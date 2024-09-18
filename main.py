@@ -85,7 +85,7 @@ def text_to_speach(text: str, language: str) -> str:
             ),
         )
 
-        save_file_path = f"{language}.mp3"
+        save_file_path = f"audios/{language}.mp3"
 
         with open(save_file_path, "wb") as f:
             for chunk in response:
