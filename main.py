@@ -4,8 +4,16 @@ from translate import Translator
 from dotenv import dotenv_values
 from elevenlabs.client import ElevenLabs
 from elevenlabs import VoiceSettings
+import ssl
+import urllib.request
 
-ELEVENLABS_API_KEY = "sk_94afe00d63676a24b0d33ead7e5cbab27344d1a55fd49d13"
+
+config = dotenv_values(".env")
+
+ELEVENLABS_API_KEY = config["ELEVENLABS_API_KEY"]
+
+# Deshabilitar verificación SSL (solo para desarrollo)
+ssl._create_default_https_context = ssl._create_unverified_context
 
 
 def translator(audio_file):
@@ -107,4 +115,4 @@ web = gr.Interface(
     description="Traductor de voz con AI a varios idiomas"
 )
 
-web.launch
+web.launch()
